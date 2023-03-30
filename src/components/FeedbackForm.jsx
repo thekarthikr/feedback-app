@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import RatingSelect from "./RatingSelect";
 import Card from "./Card";
 import Button from "./Button";
+import FeedbackContext from "./context/FeedbackContext";
 
-function FeedbackForm({ handleAdd }) {
+function FeedbackForm() {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(8);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
+
+  const { addFeedback } = useContext(FeedbackContext);
 
   const handleTextChange = (e) => {
     if (text !== "" && text.trim().length <= 10) {
@@ -19,7 +22,6 @@ function FeedbackForm({ handleAdd }) {
     }
 
     setText(e.target.value);
-   
   };
 
   const handleSubmit = (e) => {
@@ -29,7 +31,7 @@ function FeedbackForm({ handleAdd }) {
         text,
         rating,
       };
-      handleAdd(newFeedback);
+      addFeedback(newFeedback);
 
       setText("");
     }
@@ -49,7 +51,7 @@ function FeedbackForm({ handleAdd }) {
             value={text}
           />
           <Button type='submit' isDisabled={btnDisabled}>
-           Submit
+            Submit
           </Button>
         </div>
         {message && <p className='message'> {message} </p>}

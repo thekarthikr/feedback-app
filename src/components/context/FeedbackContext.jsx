@@ -3,8 +3,8 @@ import { createContext, useState, useEffect } from "react";
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [feedback, setFeedback] = useState([]);
-
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
@@ -20,6 +20,7 @@ export const FeedbackProvider = ({ children }) => {
     );
     const data = await res.json();
     setFeedback(data);
+    setIsLoading(false);
   };
 
   const addFeedback = (newFeedback) => {
@@ -53,6 +54,7 @@ export const FeedbackProvider = ({ children }) => {
       value={{
         feedback,
         feedbackEdit,
+        isLoading,
         deleteFeedback,
         addFeedback,
         editFeedback,

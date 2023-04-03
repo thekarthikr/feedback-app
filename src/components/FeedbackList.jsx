@@ -4,16 +4,19 @@ import FeedbackItem from "./FeedbackItem";
 import FeedbackContext from "./context/FeedbackContext";
 
 import React from "react";
+import Loader from "./Loader";
 function FeedbackList() {
-  const { feedback } = useContext(FeedbackContext);
+  const { feedback, isLoading } = useContext(FeedbackContext);
 
-  if (!feedback || feedback.length === 0) {
+  if (!isLoading && (!feedback || feedback.length === 0)) {
     return <p>No Feedback yet </p>;
   }
 
-  return (
-    <AnimatePresence>
-      <div className='feedback-list'>
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <div className='feedback-list'>
+      <AnimatePresence>
         {feedback.map((item) => (
           <motion.div
             key={item.id}
@@ -24,8 +27,8 @@ function FeedbackList() {
             <FeedbackItem key={item.id} item={item} />
           </motion.div>
         ))}
-      </div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </div>
   );
 }
 

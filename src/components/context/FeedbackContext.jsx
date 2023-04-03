@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { createContext, useState, useEffect } from "react";
+import { json } from "react-router-dom";
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
@@ -23,9 +24,17 @@ export const FeedbackProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4();
-    setFeedback([newFeedback, ...feedback]);
+  const addFeedback = async (newFeedback) => {
+    const res = await fetch("http://localhost:3000/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newFeedback),
+    });
+
+    const data = await res.json();
+    setFeedback([data, ...feedback]);
   };
 
   const deleteFeedback = (id) => {

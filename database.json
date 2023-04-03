@@ -6,14 +6,9 @@
       "rating": 8
     },
     {
-      "id": 2,
-      "text": "This is Rating two",
-      "rating": 7
-    },
-    {
-      "text": "dfdfdfdfdfdfdf",
+      "text": "This is Rating updated two",
       "rating": 7,
-      "id": 3
+      "id": 2
     }
   ]
 }

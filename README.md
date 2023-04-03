@@ -8,19 +8,19 @@ This Feedback app is a React.js based web application that allows users to add, 
 2. Navigate to the root directory of the project in your terminal.
 3. Install dependencies by running the following command:
 
-npm install
+  `npm install`
 
 4. To start the development server
 
-npm run dev
+  `npm run dev`
 
 5. To start the JSON server
 
-npm run server
+  `npm run server`
 
 6. To start the development server and the JSON server, run the following command:
 
-npm run start
+  `npm run start`
 
 
 This command will start both the React development server and the JSON server concurrently, which means that you can develop and test your app in real-time with the data stored in the JSON server.
@@ -31,7 +31,7 @@ This command will start both the React development server and the JSON server co
 
 To build the app for production, run the following command:
 
-npm run build
+  `npm run build`
 
 
 This will create a production-ready build of the app in the `dist` directory.
